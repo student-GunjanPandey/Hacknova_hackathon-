@@ -138,3 +138,102 @@
 
 </body>
 </html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Empowering Rural Healthcare</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f8ff;
+      color: #333;
+    }
+
+    header {
+      background: #2e7d32;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    .features {
+      padding: 30px 10%;
+      background: #fff;
+    }
+
+    .feature {
+      background: #e8f5e9;
+      margin-bottom: 20px;
+      padding: 20px;
+      border-left: 5px solid #2e7d32;
+      border-radius: 5px;
+    }
+
+    .feature h2 {
+      margin-top: 0;
+      color: #1b5e20;
+    }
+
+    footer {
+      background: #2e7d32;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 24px;
+      }
+
+      .features {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Empowering Rural Healthcare with Smart Accessible Technology</h1>
+  </header>
+
+  <section class="features">
+    <div class="feature">
+      <h2>1. Patient Dashboard</h2>
+      <p>View and update vitals such as blood pressure, glucose levels, heart rate, and more. Accessible for both patients and caretakers.</p>
+    </div>
+
+    <div class="feature">
+      <h2>2. Doctor Login</h2>
+      <p>Secure login for doctors to monitor assigned patients, view medical history, and provide remote consultation support.</p>
+    </div>
+
+    <div class="feature">
+      <h2>3. Reminders & Alerts</h2>
+      <p>Automatic reminders for medication intake, checkups, and vaccination dates through SMS or app notifications.</p>
+    </div>
+
+    <div class="feature">
+      <h2>5. Local Language Tips</h2>
+      <p>Health education and medical tips provided in regional languages such as Hindi, Bengali, Telugu, and more.</p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Rural HealthTech Initiative | Built for Bharat 🇮🇳
+  </footer>
+
+</body>
+</html>
