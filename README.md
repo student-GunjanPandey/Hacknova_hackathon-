@@ -1,1 +1,140 @@
 # Hacknova_hackathon-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Healthcare Login/Register</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(to right, #2bc0e4, #eaecc6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .container h2 {
+      margin-bottom: 1rem;
+      color: #2b7a78;
+    }
+
+    .toggle-buttons {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .toggle-buttons button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      background-color: #3aafa9;
+      color: white;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .toggle-buttons button.active {
+      background-color: #2b7a78;
+    }
+
+    form {
+      display: none;
+      flex-direction: column;
+    }
+
+    form.active {
+      display: flex;
+    }
+
+    input {
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button.submit-btn {
+      background-color: #3aafa9;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    button.submit-btn:hover {
+      background-color: #2b7a78;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Healthcare Login/Register</h2>
+
+  <div class="toggle-buttons">
+    <button id="loginToggle" class="active">Login</button>
+    <button id="registerToggle">Register</button>
+  </div>
+
+  <!-- Login Form -->
+  <form id="loginForm" class="active">
+    <input type="email" placeholder="Email" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit" class="submit-btn">Login</button>
+  </form>
+
+  <!-- Register Form -->
+  <form id="registerForm">
+    <input type="text" placeholder="Full Name" required />
+    <input type="email" placeholder="Email" required />
+    <input type="password" placeholder="Password" required />
+    <input type="password" placeholder="Confirm Password" required />
+    <button type="submit" class="submit-btn">Register</button>
+  </form>
+</div>
+
+<script>
+  const loginBtn = document.getElementById("loginToggle");
+  const registerBtn = document.getElementById("registerToggle");
+  const loginForm = document.getElementById("loginForm");
+  const registerForm = document.getElementById("registerForm");
+
+  loginBtn.addEventListener("click", () => {
+    loginForm.classList.add("active");
+    registerForm.classList.remove("active");
+    loginBtn.classList.add("active");
+    registerBtn.classList.remove("active");
+  });
+
+  registerBtn.addEventListener("click", () => {
+    registerForm.classList.add("active");
+    loginForm.classList.remove("active");
+    registerBtn.classList.add("active");
+    loginBtn.classList.remove("active");
+  });
+</script>
+
+</body>
+</html>
