@@ -1,5 +1,5 @@
 🏥 Rural Healthcare Tracking Web App
-A user-friendly and responsive web-based application designed to empower rural communities by tracking patient health, doctor monitoring, appointment reminders, and health tips in local languages. This was developed as a submission for a Healthcare Technology Hackathon.
+A user-friendly and responsive web-based application designed to empower rural communities by tracking patient health, doctor monitoring, appointment reminders, and health tips in local languages.
 
 🚀 Features
 👨‍⚕ Doctor Panel
