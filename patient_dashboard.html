@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <title>Patient Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    /* Your existing styles remain unchanged */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -15,6 +15,7 @@
 
     body {
       background-color: #f8f9fa;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     header {
@@ -39,7 +40,7 @@
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      transition: transform 0.2s ease;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     .card:hover {
@@ -113,171 +114,196 @@
       display: flex;
       flex-direction: column;
     }
+
+    body.dark-mode {
+      background-color: #121212;
+      color: white;
+    }
+
+    body.dark-mode .card {
+      background-color: #1e1e1e;
+      color: white;
+    }
+
+    body.dark-mode .card h3,
+    body.dark-mode .card p,
+    body.dark-mode .card a {
+      color: white;
+    }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Patient Dashboard</h1>
-    <p id="username">Welcome, <span id="nameDisplay">Khushi Gupta</span></p>
-    <a href="login.html" class="logout-btn">Logout</a>
-  </header>
+<header>
+  <h1>Patient Dashboard</h1>
+  <p id="username">Welcome, <span id="nameDisplay">Khushi Gupta</span></p>
+  <a href="login.html" class="logout-btn">Logout</a>
+</header>
 
-  <section class="dashboard">
+<section class="dashboard">
+  <div class="card">
+    <h3>👤 Personal Information</h3>
+    <div class="editable" id="personalInfo">
+      <p><strong>Name:</strong> <span id="nameText">Khushi Gupta</span></p>
+      <p><strong>Age:</strong> <span id="ageText">20</span></p>
+      <p><strong>Gender:</strong> <span id="genderText">Female</span></p>
+      <p><strong>Blood Group:</strong> <span id="bloodText">B+</span></p>
 
-    <!-- Personal Info Card -->
-    <div class="card">
-      <h3>👤 Personal Information</h3>
-      <div class="editable" id="personalInfo">
-        <p><strong>Name:</strong> <span id="nameText">Khushi Gupta</span></p>
-        <p><strong>Age:</strong> <span id="ageText">20</span></p>
-        <p><strong>Gender:</strong> <span id="genderText">Female</span></p>
-        <p><strong>Blood Group:</strong> <span id="bloodText">B+</span></p>
-
-        <div id="editFields" style="display: none;">
-          <input type="text" id="nameInput" placeholder="Name">
-          <input type="number" id="ageInput" placeholder="Age">
-          <input type="text" id="genderInput" placeholder="Gender">
-          <input type="text" id="bloodInput" placeholder="Blood Group">
-        </div>
-
-        <button onclick="toggleEdit()">Edit</button>
+      <div id="editFields" style="display: none;">
+        <input type="text" id="nameInput" placeholder="Name">
+        <input type="number" id="ageInput" placeholder="Age">
+        <input type="text" id="genderInput" placeholder="Gender">
+        <input type="text" id="bloodInput" placeholder="Blood Group">
       </div>
+
+      <button onclick="toggleEdit()">Edit</button>
     </div>
-
-    <!-- Appointments -->
-    <div class="card">
-      <h3>📅 Appointments</h3>
-      <p>Dr. Sharma - 12 July, 10:00 AM</p>
-      <p>Dr. Singh - 18 July, 3:00 PM</p>
-    </div>
-
-    <!-- Medical Reports -->
-    <div class="card">
-      <h3>📄 Medical Reports</h3>
-      <a href="#">🔗 Blood Test Report</a><br>
-      <a href="#">🔗 X-Ray Result</a>
-    </div>
-
-    <!-- Prescriptions -->
-    <div class="card">
-      <h3>💊 Prescriptions</h3>
-      <p>Paracetamol - 2x daily</p>
-      <p>Vitamin C - 1x daily</p>
-    </div>
-
-    <!-- Vitals Entry -->
-    <div class="card">
-      <h3>💓 Enter Vitals</h3>
-      <label>Blood Pressure:</label><br>
-      <input type="number" id="bp" placeholder="e.g. 120"><br>
-
-      <label>Blood Sugar:</label><br>
-      <input type="number" id="sugar" placeholder="e.g. 90"><br>
-
-      <label>Weight (kg):</label><br>
-      <input type="number" id="weight" placeholder="e.g. 60"><br>
-
-      <button onclick="submitVitals()">Submit Vitals</button>
-    </div>
-
-    <!-- Advice -->
-    <div class="card">
-      <h3>📢 Doctor's Advice</h3>
-      <p id="adviceBox">Loading latest advice...</p>
-    </div>
-
-  </section>
-
-  <footer>
-    &copy; 2025 Rural Healthcare Tracker | Designed for HackOrbit
-  </footer>
-
-  <script>
-    let editing = false;
-
-    function toggleEdit() {
-      editing = !editing;
-
-      const displayElements = ['nameText', 'ageText', 'genderText', 'bloodText'];
-      const inputElements = ['nameInput', 'ageInput', 'genderInput', 'bloodInput'];
-      const editFields = document.getElementById("editFields");
-      const button = document.querySelector("#personalInfo button");
-
-      if (editing) {
-        // Show inputs and pre-fill
-        editFields.style.display = "block";
-        inputElements.forEach((id, index) => {
-          document.getElementById(id).value = document.getElementById(displayElements[index]).innerText;
-        });
-        button.innerText = "Save";
-      } else {
-        // Save changes
-        displayElements.forEach((id, index) => {
-          const newVal = document.getElementById(inputElements[index]).value;
-          document.getElementById(id).innerText = newVal;
-        });
-
-        // Update username greeting too
-        document.getElementById("nameDisplay").innerText = document.getElementById("nameInput").value;
-
-        editFields.style.display = "none";
-        button.innerText = "Edit";
-      }
-    }
-
-    function submitVitals() {
-      const bp = document.getElementById("bp").value;
-      const sugar = document.getElementById("sugar").value;
-      const weight = document.getElementById("weight").value;
-
-      if (!bp || !sugar || !weight) {
-        alert("Please fill all vitals.");
-        return;
-      }
-
-      alert("Vitals submitted: BP " + bp + ", Sugar " + sugar + ", Weight " + weight);
-    }
-
-    document.getElementById("adviceBox").innerText = "Keep monitoring sugar. Walk daily for 30 mins.";
-  </script>
-  <div id="chatbot" style="position:fixed; bottom:20px; right:20px; width:300px; z-index:1000;">
-  <button onclick="toggleChat()" style="width:100%; padding:10px; background:#2e7d32; color:white; border:none; border-radius:8px;">💬 Chat with Assistant</button>
-  <div id="chatWindow" style="display:none; background:white; border:1px solid #ccc; padding:10px; height:300px; overflow:auto; border-radius:10px; margin-top:5px;">
-    <div id="chatContent" style="height:230px; overflow-y:auto;"></div>
-    <input id="userInput" type="text" placeholder="Ask a question..." style="width:100%; padding:5px; margin-top:5px;" onkeydown="if(event.key==='Enter'){sendMessage();}" />
   </div>
-</div>
-  <script>
-  function toggleChat() {
-    const chat = document.getElementById("chatWindow");
-    chat.style.display = chat.style.display === "none" ? "block" : "none";
+
+  <div class="card">
+    <h3>🗕 Appointments</h3>
+    <p>Dr. Sharma - 12 July, 10:00 AM</p>
+    <p>Dr. Singh - 18 July, 3:00 PM</p>
+  </div>
+
+  <div class="card">
+    <h3>📄 Medical Reports</h3>
+    <a href="#">🔗 Blood Test Report</a><br>
+    <a href="#">🔗 X-Ray Result</a>
+  </div>
+
+  <div class="card">
+    <h3>💊 Prescriptions</h3>
+    <p>Paracetamol - 2x daily</p>
+    <p>Vitamin C - 1x daily</p>
+  </div>
+
+  <div class="card">
+    <h3>💓 Enter Vitals</h3>
+    <label>Blood Pressure:</label><br>
+    <input type="number" id="bp" placeholder="e.g. 120"><br>
+    <label>Blood Sugar:</label><br>
+    <input type="number" id="sugar" placeholder="e.g. 90"><br>
+    <label>Weight (kg):</label><br>
+    <input type="number" id="weight" placeholder="e.g. 60"><br>
+    <button onclick="submitVitals()">Submit Vitals</button>
+  </div>
+
+  <div class="card">
+    <h3>📢 Doctor's Advice</h3>
+    <p id="adviceBox">Loading latest advice...</p>
+  </div>
+
+  <div class="card">
+    <h3>📊 Vitals Trends</h3>
+    <canvas id="vitalsChart"></canvas>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Rural Healthcare Tracker | Designed for HackOrbit
+</footer>
+
+<!-- Dark mode toggle -->
+<button onclick="toggleDarkMode()" style="position: fixed; top: 20px; right: 20px; padding: 10px 15px; background-color: #2e7d32; color: white; border: none; border-radius: 8px; z-index: 1000;">
+  🌙 Dark Mode
+</button>
+
+<script>
+  let editing = false;
+
+  function toggleEdit() {
+    editing = !editing;
+    const display = ['nameText', 'ageText', 'genderText', 'bloodText'];
+    const inputs = ['nameInput', 'ageInput', 'genderInput', 'bloodInput'];
+    const editFields = document.getElementById("editFields");
+    const button = document.querySelector("#personalInfo button");
+
+    if (editing) {
+      editFields.style.display = "block";
+      inputs.forEach((id, idx) => {
+        document.getElementById(id).value = document.getElementById(display[idx]).innerText;
+      });
+      button.innerText = "Save";
+    } else {
+      display.forEach((id, idx) => {
+        const newVal = document.getElementById(inputs[idx]).value;
+        document.getElementById(id).innerText = newVal;
+      });
+      document.getElementById("nameDisplay").innerText = document.getElementById("nameInput").value;
+      editFields.style.display = "none";
+      button.innerText = "Edit";
+    }
   }
 
-  function sendMessage() {
-    const input = document.getElementById("userInput");
-    const content = document.getElementById("chatContent");
-    const msg = input.value.trim();
+  function submitVitals() {
+    const bp = document.getElementById("bp").value;
+    const sugar = document.getElementById("sugar").value;
+    const weight = document.getElementById("weight").value;
 
-    if (!msg) return;
-
-    content.innerHTML += `<div><strong>You:</strong> ${msg}</div>`;
-
-    let reply = "Sorry, I didn't understand that.";
-
-    if (msg.toLowerCase().includes("bp") || msg.toLowerCase().includes("blood pressure")) {
-      reply = "To measure BP, sit calmly, use a digital monitor, and rest your arm on a flat surface.";
-    } else if (msg.toLowerCase().includes("appointment")) {
-      reply = "You can check your upcoming appointments in the Appointments section.";
-    } else if (msg.toLowerCase().includes("diet") || msg.toLowerCase().includes("food")) {
-      reply = "Eat more green vegetables, drink clean water, and avoid oily food.";
-    } else if (msg.toLowerCase().includes("reminder")) {
-      reply = "To set a reminder, go to the Reminders page from the Empowerment section.";
+    if (!bp || !sugar || !weight) {
+      alert("Please fill all vitals.");
+      return;
     }
 
-    content.innerHTML += `<div><strong>Bot:</strong> ${reply}</div>`;
-    input.value = "";
-    content.scrollTop = content.scrollHeight;
+    alert(`Vitals submitted: BP ${bp}, Sugar ${sugar}, Weight ${weight}`);
+  }
+
+  document.getElementById("adviceBox").innerText = "Keep monitoring sugar. Walk daily for 30 mins.";
+
+  function toggleDarkMode() {
+    const body = document.body;
+    const isDark = body.classList.toggle("dark-mode");
+    localStorage.setItem("darkModeEnabled", isDark);
+    createChart(isDark);
+  }
+
+  window.onload = () => {
+    const saved = localStorage.getItem("darkModeEnabled") === "true";
+    if (saved) document.body.classList.add("dark-mode");
+    createChart(saved);
+  };
+
+  let chart;
+  function getChartOptions(isDark) {
+    return {
+      responsive: true,
+      plugins: {
+        legend: { labels: { color: isDark ? 'white' : '#333' } },
+        tooltip: {
+          backgroundColor: isDark ? '#333' : 'white',
+          titleColor: isDark ? 'white' : '#000',
+          bodyColor: isDark ? '#eee' : '#000',
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: isDark ? 'white' : '#333' },
+          grid: { color: isDark ? '#555' : '#ccc' }
+        },
+        y: {
+          ticks: { color: isDark ? 'white' : '#333' },
+          grid: { color: isDark ? '#555' : '#ccc' }
+        }
+      }
+    };
+  }
+
+  function createChart(isDark) {
+    const ctx = document.getElementById('vitalsChart').getContext('2d');
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Day 1', 'Day 2', 'Day 3'],
+        datasets: [
+          { label: 'Blood Pressure', data: [120, 125, 118], borderColor: '#ef5350', backgroundColor: 'rgba(239,83,80,0.2)', tension: 0.3 },
+          { label: 'Sugar', data: [90, 95, 85], borderColor: '#42a5f5', backgroundColor: 'rgba(66,165,245,0.2)', tension: 0.3 },
+          { label: 'Weight', data: [60, 61, 59], borderColor: '#66bb6a', backgroundColor: 'rgba(102,187,106,0.2)', tension: 0.3 }
+        ]
+      },
+      options: getChartOptions(isDark)
+    });
   }
 </script>
 
