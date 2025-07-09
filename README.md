@@ -28,6 +28,21 @@ Health education tips in multiple Indian languages:
 
 Hindi, Bengali, Telugu, Gujarati, Punjabi, Uttarakhandi, English.
 
+💬 Static Chatbot Assistant
+chatbot available on key pages
+
+Responds to basic health-related queries like:
+
+Blood pressure tips
+
+Diet/food guidance
+
+Appointment help
+
+Reminder instructions
+
+Enhances interactivity for users in rural areas
+
 🔐 Login & Register
 Simple login/register page that redirects to the Empowerment page.
 
