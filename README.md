@@ -1,4 +1,3 @@
-# Hacknova_hackathon-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,6 +85,29 @@
     button.submit-btn:hover {
       background-color: #2b7a78;
     }
+
+    .link-buttons {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.custom-btn {
+  background-color: #2b7a78;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.custom-btn:hover {
+  background-color: #205e5b;
+}
+
   </style>
 </head>
 <body>
@@ -99,10 +121,18 @@
   </div>
 
   <!-- Login Form -->
-  <form id="loginForm" class="active">
+  <!-- <form id="loginForm" class="active" onsubmit="event.preventDefault(); window.location.href='empowerment.html';"> -->
+    <form id="loginForm" class="active">
+
     <input type="email" placeholder="Email" required />
     <input type="password" placeholder="Password" required />
-    <button type="submit" class="submit-btn">Login</button>
+    <button type="button" id="loginSubmitBtn" class="submit-btn">Login</button>
+
+    <div class="link-buttons">
+  <!-- <a href="empowerment.html" class="custom-btn">Empowerment Page</a>
+  <a href="patient_dashboard.html" class="custom-btn">Patient Dashboard Page</a> -->
+</div>
+
   </form>
 
   <!-- Register Form -->
@@ -134,11 +164,16 @@
     registerBtn.classList.add("active");
     loginBtn.classList.remove("active");
   });
+  document.querySelector("#loginForm .submit-btn").addEventListener("click", function(e) {
+  e.preventDefault(); // stop actual form submission
+  window.location.href = "empowerment.html"; // redirect
+});
+
 </script>
 
 </body>
 </html>
-
+     
 
 
 <!DOCTYPE html>
@@ -146,6 +181,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Empowering Rural Healthcare</title>
+  
+
   <style>
     body {
       margin: 0;
@@ -201,35 +238,73 @@
         padding: 20px;
       }
     }
+    .go-btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 24px;
+  background-color: #2e7d32;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.go-btn:hover {
+  background-color: #1b5e20;
+}
+
+.feature:hover {
+  background-color: #d0f0d0;
+  cursor: pointer;
+}
+
+
   </style>
 </head>
 <body>
+  
+
 
   <header>
     <h1>Empowering Rural Healthcare with Smart Accessible Technology</h1>
   </header>
 
   <section class="features">
+
+  <a href="patient_dashboard.html" style="text-decoration: none;">
     <div class="feature">
       <h2>1. Patient Dashboard</h2>
-      <p>View and update vitals such as blood pressure, glucose levels, heart rate, and more. Accessible for both patients and caretakers.</p>
+      <p>View and update vitals such as blood pressure, glucose levels, heart rate, and more.</p>
     </div>
+  </a>
 
+  <a href="doctor.html" style="text-decoration: none;">
     <div class="feature">
       <h2>2. Doctor Login</h2>
-      <p>Secure login for doctors to monitor assigned patients, view medical history, and provide remote consultation support.</p>
+      <p>Secure login for doctors to monitor assigned patients, view medical history, and provide support.</p>
     </div>
+  </a>
 
+  <a href="reminders.html" style="text-decoration: none;">
     <div class="feature">
       <h2>3. Reminders & Alerts</h2>
-      <p>Automatic reminders for medication intake, checkups, and vaccination dates through SMS or app notifications.</p>
+      <p>Automatic reminders for medication intake, checkups, and vaccination dates.</p>
     </div>
+  </a>
 
+  <a href="tips.html" style="text-decoration: none;">
     <div class="feature">
-      <h2>5. Local Language Tips</h2>
-      <p>Health education and medical tips provided in regional languages such as Hindi, Bengali, Telugu, and more.</p>
+      <h2>4. Local Language Tips</h2>
+      <p>Health education and tips provided in Hindi, Bengali, Telugu, etc.</p>
     </div>
-  </section>
+  </a>
+
+  <a href="patient_dashboard.html" class="go-btn">Go to Dashboard Now</a>
+
+</section>
+
+
 
   <footer>
     &copy; 2025 Rural HealthTech Initiative | Built for Bharat 🇮🇳
@@ -237,3 +312,16 @@
 
 </body>
 </html>
+
+    
+      
+    
+
+    
+
+    
+
+
+
+
+
