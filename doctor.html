@@ -112,6 +112,46 @@
       }
     });
   </script>
+<div id="chatbot" style="position:fixed; bottom:20px; right:20px; width:300px; z-index:1000;">
+  <button onclick="toggleChat()" style="width:100%; padding:10px; background:#2e7d32; color:white; border:none; border-radius:8px;">💬 Chat with Assistant</button>
+  <div id="chatWindow" style="display:none; background:white; border:1px solid #ccc; padding:10px; height:300px; overflow:auto; border-radius:10px; margin-top:5px;">
+    <div id="chatContent" style="height:230px; overflow-y:auto;"></div>
+    <input id="userInput" type="text" placeholder="Ask a question..." style="width:100%; padding:5px; margin-top:5px;" onkeydown="if(event.key==='Enter'){sendMessage();}" />
+  </div>
+</div>
+  <script>
+  function toggleChat() {
+    const chat = document.getElementById("chatWindow");
+    chat.style.display = chat.style.display === "none" ? "block" : "none";
+  }
 
+  function sendMessage() {
+    const input = document.getElementById("userInput");
+    const content = document.getElementById("chatContent");
+    const msg = input.value.trim();
+
+    if (!msg) return;
+
+    content.innerHTML += `<div><strong>You:</strong> ${msg}</div>`;
+
+    let reply = "Sorry, I didn't understand that.";
+
+    if (msg.toLowerCase().includes("bp") || msg.toLowerCase().includes("blood pressure")) {
+      reply = "To measure BP, sit calmly, use a digital monitor, and rest your arm on a flat surface.";
+    } else if (msg.toLowerCase().includes("appointment")) {
+      reply = "You can check your upcoming appointments in the Appointments section.";
+    } else if (msg.toLowerCase().includes("diet") || msg.toLowerCase().includes("food")) {
+      reply = "Eat more green vegetables, drink clean water, and avoid oily food.";
+    } else if (msg.toLowerCase().includes("reminder")) {
+      reply = "To set a reminder, go to the Reminders page from the Empowerment section.";
+    }
+
+    content.innerHTML += `<div><strong>Bot:</strong> ${reply}</div>`;
+    input.value = "";
+    content.scrollTop = content.scrollHeight;
+  }
+</script>
+
+  
 </body>
 </html>
