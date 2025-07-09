@@ -46,6 +46,9 @@ Enhances interactivity for users in rural areas
 🔐 Login & Register
 Simple login/register page that redirects to the Empowerment page.
 
+- Interactive chatbot to provide health guidance  
+- Responsive design for easy use on mobile and desktop
+
 Empowerment hub provides access to all features.
 
 🔗 Pages Included
